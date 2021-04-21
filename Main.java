@@ -11,10 +11,11 @@ import java.util.List;
  * Deposito, Retirada, Imprimir Extrato
  * 
  * @author Victor Yukio Shirasuna, RA: 245155
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class Main
 {
+  private static final int OPTION_SAIR_ID = 5;
   static List<ContaBancaria> contasArmazenadas = new ArrayList<ContaBancaria>();
 
   public static void main(String[] args)
@@ -29,9 +30,6 @@ public class Main
     contasArmazenadas.add(c2);
     contasArmazenadas.add(c3);
 
-    c1.setTransacao("19/04/2021", -23.00, "T1");
-    c1.setTransacao("20/04/2021", 50.00, "T2");
-
     /* MENU */
     System.out.println("Digite o número da conta: ");
     numeroConta = scanner.nextInt();
@@ -40,16 +38,19 @@ public class Main
     if(conta == null)
     {
       System.out.println("\nConta não encontrada.");
+      scanner.close();
       return;
     }
 
     do
     {
+      System.out.println("Seja bem-vindo(a) " + conta.nomeCorrentista + "!");
       System.out.println("\nDigite a operação:");
       System.out.println("\t1. Deposito");
       System.out.println("\t2. Retirada");
       System.out.println("\t3. Imprimir extrato");
-      System.out.println("\t4. Sair");
+      System.out.println("\t4. Fazer transação");
+      System.out.println("\t" + OPTION_SAIR_ID + ". Sair");
       operacao = scanner.nextInt();
 
       switch(operacao)
@@ -87,9 +88,25 @@ public class Main
           else
             ContaBancaria.ImprimeExtrato(numeroConta);
           break;
+
+        case 4:
+          String dataTransacao, descricaoTransacao;
+          double valorTransacao;
+
+          System.out.println("\n***Operação de Fazer Transacao***");
+          System.out.println("Digite o valor a da transação: ");
+          valorTransacao = scanner.nextDouble();
+          System.out.println("Digite a data hoje: ");
+          dataTransacao = scanner.next();
+          System.out.println("Digite a descricao da transação: ");
+          descricaoTransacao = scanner.next();
+
+          ContaBancaria.FazerTransacao(numeroConta, dataTransacao, valorTransacao, descricaoTransacao);
+          System.out.println("Transação realizada com sucesso!");
+          break;
       }
     }
-    while(operacao != 4);
+    while(operacao != OPTION_SAIR_ID);
 
     scanner.close();
   }
@@ -97,7 +114,7 @@ public class Main
   public static ContaBancaria getContaBancaria(int numConta)
   {
     ContaBancaria contaBuscada = contasArmazenadas.stream()
-                                .filter(o -> (o.numConta == numConta))
+                                .filter(o -> o.numConta == numConta)
                                 .findAny()
                                 .orElse(null);
 

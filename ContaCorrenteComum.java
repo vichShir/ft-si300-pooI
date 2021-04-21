@@ -5,7 +5,6 @@ public class ContaCorrenteComum extends ContaBancaria
     super(numConta, nomeCorrentista, saldo);
   }
 
-  //@Override
   public static void ImprimeExtrato(int numConta)
   {
     ContaBancaria conta = Main.getContaBancaria(numConta);

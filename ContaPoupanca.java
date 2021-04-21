@@ -8,7 +8,6 @@ public class ContaPoupanca extends ContaBancaria
     this.diaAniversario = diaAniversario;
   }
 
-  //@Override
   public static void ImprimeExtrato(int numConta)
   {
     ContaPoupanca conta = (ContaPoupanca)Main.getContaBancaria(numConta);

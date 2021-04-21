@@ -8,27 +8,20 @@ public class ContaCorrenteLimite extends ContaBancaria
     this.valorLimite = valorLimite;
   }
 
-  //@Override
   public static void Retirada(int numConta, double valorDeRetirada)
   {
     ContaCorrenteLimite conta = (ContaCorrenteLimite)Main.getContaBancaria(numConta);
 
-    double _saldo = conta.getSaldo();
-    System.out.println("Antigo saldo: " + conta.getSaldo());
+    System.out.println("Saldo pré-retirada: " + conta.getSaldo());
     
-    if((_saldo - valorDeRetirada) >= conta.valorLimite)
-    {
-      _saldo -= valorDeRetirada;
-    }
+    if((conta.getSaldo() - valorDeRetirada) >= conta.valorLimite)
+      conta.updateSaldo(valorDeRetirada);
     else
       System.out.println("Valor de Retirada acima do valor limite");
 
-    conta.setSaldo(_saldo);
-
-    System.out.println("Novo saldo: " + conta.getSaldo());
+    System.out.println("Saldo pós-retirada: " + conta.getSaldo());
   }
 
-  //@Override
   public static void ImprimeExtrato(int numConta)
   {
     ContaCorrenteLimite conta = (ContaCorrenteLimite)Main.getContaBancaria(numConta);

@@ -20,10 +20,10 @@ public class ListaTransacoes
   {
     StringBuilder transacao = new StringBuilder();
 
-    transacao.append("\n\nData:               " + data);
-    transacao.append("\nValor da Transação: " + valor);
-    transacao.append("\nDescrição:          " + descricao);
-    transacao.append("\nTipo Transacao:     " + tipo + "\n");
+    transacao.append("\n\tData:               " + data);
+    transacao.append("\n\tValor da Transação: " + valor);
+    transacao.append("\n\tDescrição:          " + descricao);
+    transacao.append("\n\tTipo Transacao:     " + tipo + "\n");
 
     return transacao.toString();
   }

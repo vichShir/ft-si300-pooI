@@ -6,77 +6,59 @@ public class ContaBancaria implements Conta
   protected int numConta;
   protected String nomeCorrentista;
   protected double saldo;
-  protected List<ListaTransacoes> transacoes = new ArrayList<ListaTransacoes>();
+  protected List<ListaTransacoes> transacoes;
 
   public ContaBancaria(int numConta, String nomeCorrentista, double saldo)
   {
     this.numConta = numConta;
     this.nomeCorrentista = nomeCorrentista;
     this.saldo = saldo;
+    transacoes = new ArrayList<ListaTransacoes>();
   }
 
-  public double getSaldo()
-  {
-    return saldo;
-  }
-
-  public void setSaldo(double novoSaldo)
-  {
-    this.saldo = novoSaldo;
-  }
-
-  public void setTransacao(String data, double valor, String descricao)
-  {
-    ListaTransacoes novaTransacao = new ListaTransacoes(data, valor, descricao);
-    transacoes.add(novaTransacao);
-  }
+  protected double getSaldo()                   { return saldo; }
+  protected void updateSaldo(double novoSaldo)  { this.saldo += novoSaldo; }
 
   public String getTransacoes()
   {
     StringBuilder descricaoTransacoes = new StringBuilder();
 
-    if(this.transacoes.size() > 0)
-    {
-      for(ListaTransacoes transacao : this.transacoes)
-      {
-        descricaoTransacoes.append(transacao);
-      }
-    }
+    if(transacoes.size() > 0)
+      transacoes.stream().forEach(o -> descricaoTransacoes.append(o));
     else
       descricaoTransacoes.append("Nenhuma transação efetuada pela conta.");
 
     return descricaoTransacoes.toString();
   }
 
-  //@Override
+  public static void FazerTransacao(int numConta, String data, double valor, String descricao)
+  {
+    ContaBancaria conta = Main.getContaBancaria(numConta);
+    ListaTransacoes novaTransacao = new ListaTransacoes(data, valor, descricao);
+    conta.transacoes.add(novaTransacao);
+  }
+
   public static void Deposito(int numConta, double valorDepositado)
   {
     ContaBancaria conta = Main.getContaBancaria(numConta);
 
-    System.out.println("Antigo saldo: " + conta.getSaldo());
+    System.out.println("Saldo pré-deposito: " + conta.getSaldo());
     conta.saldo += valorDepositado;
-    System.out.println("Novo saldo: " + conta.getSaldo());
+    System.out.println("Saldo pós-deposito: " + conta.getSaldo());
   }
 
-  //@Override
   public static void Retirada(int numConta, double valorDeRetirada)
   {
     ContaBancaria conta = Main.getContaBancaria(numConta);
 
-    double _saldo = conta.getSaldo();
-    System.out.println("Antigo saldo: " + conta.getSaldo());
+    System.out.println("Saldo pré-retirada: " + conta.getSaldo());
 
-    if(valorDeRetirada <= _saldo)
-    {
-      _saldo -= valorDeRetirada;
-    }
-
-    conta.setSaldo(_saldo);
-
-    System.out.println("Novo saldo: " + conta.getSaldo());
+    if(conta.getSaldo() >= valorDeRetirada)
+      conta.updateSaldo(valorDeRetirada);
+    
+    System.out.println("Saldo pós-retirada: " + conta.getSaldo());
   }
 
-  //@Override
   public static void ImprimeExtrato(int numConta)
   {
     ContaBancaria conta = Main.getContaBancaria(numConta);
