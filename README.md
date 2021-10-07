@@ -1,44 +1,20 @@
-# simple-bank-system version 0.0.1
+# SI300 - Programação Orientada a Objetos I 📗
+![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipse&logoColor=white) ![Intellijidea](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+### 📃 Descrição
+O objetivo dos **exercícios programas (EP)** é avaliar os conhecimentos adquiridos em **Programação Orientada a Objetos** ao longo dos tópicos passados em aula. Os EP's foram elaborados em C++ ou Java.
 
-Programa simples de um sistema bancário desenvolvido a partir de requisitos de um trabalho universitário:
+#### Tópicos
+* ✔️ Objetos
+* ✔️ Classes
+* ✔️ Herança
+* ✔️ Polimorfismo
+* ✔️ Inputs & Outputs
+* ✔️ Tratamento de Exceções
+* ✔️ Encapsulamento
+* ✔️ Reutilização
 
-    Um banco trabalha com três tipos de contas:
+### 📚 Conteúdo
+- Exercícios Programas
 
-    * conta corrente comum;
-    * conta corrente com limite;
-    * conta poupança.
-
-    Em todos os casos é necessário guardar o número da conta, o nome
-    do correntista e o saldo.
-
-    Para a conta poupança é necessário guardar o dia do aniversário
-    da conta (quando são creditados os juros).
-
-    Já para a conta com limite é necessário guardar o valor do limite.
-
-    As contas também armazenam uma lista de transações. Uma transação
-    é definida por uma data, valor da transação e descrição. Se o
-    valor for negativo, a transação é considerada um débito (crédito
-    caso contrário).
-
-    As operações possíveis são: depósito, retirada e impressão de
-    extrato. Essas operações devem ser definidas numa classe abstrata
-    pura (interface) denominada Conta.
-
-    A operação de depósito é igual nos três tipos de conta.
-
-    A retirada só é diferente na conta com limite, pois esta admite
-    que o saldo fique negativo até o limite estabelecido.
-
-    Finalmente o extrato é diferente para as três:
-
-    * na conta comum exibe o número da conta, nome do cliente, transações e o saldo;
-    * na conta limite imprime também o valor do limite;
-    * na conta poupança imprime também o dia do aniversário.
-
-    Implemente a hierarquia de classes das contas explorando o conceito de polimorfismo.
-
-    Faça um programa em C++ que permita ao usuário fazer depósitos,
-    retiradas e verificação de extrato nas suas contas a partir do
-    número da conta. Utilize uma única coleção (list ou vector) para
-    armazenar todos os tipos de contas.
+### 🌐 Motivação
+Os exercícios programas (EP's) compõem a nota final da disciplina de **SI300 - Programação Orientada a Objetos I** (1º Semestre 2021) na Faculdade de Tecnologia (FT) UNICAMP.
